@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NinjaMan</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .row {
+            line-height: 0;
+        }
+
+        .wall {
+            background-color: blue;
+            height: 40px;
+            width: 40px;
+            display: inline-block;
+        }
+
+        .sushi {
+            background-color: black;
+            height: 40px;
+            width: 40px;
+            display: inline-block;
+            background-image: url('img/sushi.png');
+            background-size: contain;
+        }
+
+        .onigiri {
+            background-color: black;
+            height: 40px;
+            width: 40px;
+            display: inline-block;
+            background-image: url('img/onigiri.png');
+            background-size: contain;
+        }
+
+        .blank {
+            background-color: black;
+            height: 40px;
+            width: 40px;
+            display: inline-block;
+        }
+
+        #ninjaman {
+            background-color: black;
+            height: 40px;
+            width: 40px;
+            background-image: url('img/ninja.gif');
+            background-size: contain;
+            display: inline-block;
+            position: absolute;
+            left: 40px;
+            top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="world">
+
+    </div>
+
+    <div id="ninjaman"></div>
+
+    <h1 id="score">Score: </h1>
+
+    <h1 id="prevScore">Previous Score:</h1>
+</body>
+
+<script>
+    let world = []
+
+    const worldDict = {
+        0: 'blank',
+        1: 'wall',
+        2: 'sushi',
+        3: 'onigiri'
+    }
+
+
+    // create a random world with random dimensions (4-10x4-10) with random placements of food
+    // once the pumpkins are implemented there will be a controlled number of onigiri created to demonstrate their rarity
+    function createRandomWorld() {
+        // reset any previous world
+        world = [];
+
+        // establish the random dimensions
+        let width = Math.floor((Math.random() * 10) + 4);
+        let height = Math.floor((Math.random() * 10) + 4);
+
+        // create an array with those random dimensions with random iterations of elements (blank,wall,sushi,onigiri)
+        for (let i = 0; i < height; i++) {
+            world.push([])
+            for (let j = 0; j < width; j++) {
+                world[i].push(Math.floor(Math.random() * 4));
+            }
+        }
+
+        world[1][1] = 0; //no food at the ninja's current position
+
+        // function to replace the wall with something else
+        function generateRandom(min, max) {
+            let num = Math.floor(Math.random() * max) + min;
+            return (num === 1) ? generateRandom(min, max) : num;
+        }
+
+        // make sure that there are no 'floors/ceilings' so that all points of the world can be accessible
+        for (let i = 0; i < world.length - 1; i++) {
+            let floorCount = 0;
+
+            for (let j = 0; j < world[i].length - 1; j++) {
+                if (world[i][j] === 1) {
+                    floorCount++;
+                }
+            }
+
+            if (floorCount === world[i].length) {
+                // make a random point of that floor something other than a wall
+                world[i][Math.floor((Math.random() * world[i].length - 1))] = generateRandom(0, 4);
+            }
+        }
+
+
+        //make sure that none of the foods are surrounded by walls
+        for (let i = 0; i < world.length - 1; i++) {
+            for (let j = 0; j < world[i].length - 1; j++) {
+                // top left corner
+                if (world[i][j] === 2 ||
+                    world[i][j] === 3) {
+
+                    // objects that define properties of elements in specific positions
+                    const topLeft = {
+                        position: {
+                            y: 0,
+                            x: 0
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][this.position.x + 1], //right
+                            world[this.position.y + 1][this.position.x], //bottom
+                            world[this.position.y][world[this.position.y].length - 1], //"left"
+                            world[world.length - 1][this.position.x]][loc] // "top"
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const topRight = {
+                        position: {
+                            y: 0,
+                            x: world[0].length - 1
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][0], //"right"
+                            world[this.position.y + 1][this.position.x], //bottom
+                            world[this.position.y][this.position.x - 1], //left
+                            world[world.length - 1][this.position.x]][loc] // "top"
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const bottomLeft = {
+                        position: {
+                            y: world.length - 1,
+                            x: 0
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][this.position.x + 1], //right
+                            world[0][this.position.x], //"bottom"
+                            world[this.position.y][world[this.position.y].length - 1], //"left"
+                            world[this.position.y - 1][this.position.x]][loc] // top
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const bottomRight = {
+                        position: {
+                            y: world.length - 1,
+                            x: world[0].length - 1
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][0], //"right"
+                            world[0][this.position.x], //"bottom"
+                            world[this.position.y][this.position.x - 1], //left
+                            world[this.position.y - 1][this.position.x]][loc] // top
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const top = {
+                        position: {
+                            y: 0,
+                            x: j
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][this.position.x + 1], //right
+                            world[this.position.y + 1][this.position.x], //"bottom"
+                            world[this.position.y][this.position.x - 1], //left
+                            world[world.length - 1][this.position.x]][loc] // top
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const left = {
+                        position: {
+                            y: i,
+                            x: 0
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][this.position.x + 1], //right
+                            world[this.position.y + 1][this.position.x], //bottom
+                            world[this.position.y][world[this.position.y].length - 1], //"left"
+                            world[this.position.y - 1][this.position.x]][loc] // top
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const bottom = {
+                        position: {
+                            y: world.length - 1,
+                            x: j
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][this.position.x + 1], //right
+                            world[0][this.position.x], //"bottom"
+                            world[this.position.y][this.position.x - 1], //left
+                            world[this.position.y - 1][this.position.x]][loc] // top
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const right = {
+                        position: {
+                            y: i,
+                            x: world[i].length - 1
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][0], //"right"
+                            world[this.position.y + 1][this.position.x], //bottom
+                            world[this.position.y][this.position.x - 1], //left
+                            world[this.position.y - 1][this.position.x]][loc] // top
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    const inside = {
+                        position: {
+                            y: i,
+                            x: j
+                        },
+                        barrierLoc(loc) {
+                            return [world[this.position.y][this.position.x + 1], //right
+                            world[this.position.y + 1][this.position.x], //bottom
+                            world[this.position.y][this.position.x - 1], //left
+                            world[this.position.y - 1][this.position.x]][loc] // top
+                        },
+                        barrierCond() {
+                            return this.barrierLoc(0) === 1 &&
+                                this.barrierLoc(1) === 1 &&
+                                this.barrierLoc(2) === 1 &&
+                                this.barrierLoc(3) === 1
+                        }
+                    }
+
+                    if (i === topLeft.position.y &&
+                        j === topLeft.position.x) {
+                        if (topLeft.barrierCond()) {
+                            topLeft.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === topRight.position.y &&
+                        j === topRight.position.x) {
+                        if (topRight.barrierCond()) {
+                            topRight.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === bottomLeft.position.y &&
+                        j === bottomLeft.position.x) {
+                        if (bottomLeft.barrierCond()) {
+                            bottomLeft.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === bottomRight.position.y &&
+                        j === bottomRight.position.x) {
+                        if (bottomRight.barrierCond()) {
+                            bottomRight.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === left.position.y &&
+                        j === left.position.x) {
+                        if (left.barrierCond()) {
+                            left.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === bottom.position.y &&
+                        j === bottom.position.x) {
+                        if (bottom.barrierCond()) {
+                            bottom.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === top.position.y &&
+                        j === top.position.x) {
+                        if (top.barrierCond()) {
+                            top.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === right.position.y &&
+                        j === right.position.x) {
+                        if (right.barrierCond()) {
+                            right.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    } else if (i === inside.position.y &&
+                        j === inside.position.x) {
+                        if (inside.barrierCond()) {
+                            inside.barrierLoc(Math.floor(Math.random() * 4)) = generateRandom(0, 4);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    createRandomWorld();
+
+    function drawWorld() {
+        let output = "";
+
+        for (let row = 0; row < world.length; row++) {
+            output += "<div class='row'>"
+            for (let x = 0; x < world[row].length; x++) {
+                output += "<div class='" + worldDict[world[row][x]] + "'></div>"
+            }
+            output += "</div>"
+        }
+
+        document.getElementById('world').innerHTML = output;
+    }
+
+    drawWorld();
+
+    const ninjaman = {
+        x: 1,
+        y: 1
+    }
+
+    function drawNinjaman() {
+        document.getElementById('ninjaman').style.top = ninjaman.y * 40 + 'px';
+        document.getElementById('ninjaman').style.left = ninjaman.x * 40 + 'px';
+    }
+
+    drawNinjaman();
+
+    let score = 0;
+
+    function updateScore() {
+        document.getElementById('score').textContent = "Score: " + score;
+    }
+
+    // check if the game is over by checking if the world is complete 
+    // there could be a cleaner way to implement this. I could use the array.includes() function. consider cleaning this up 
+    function gameOver() {
+        // find any 2s or 3s in our world
+        // keep track of any 2s or 3s
+        // if there are any 2s or 3s return false;
+        for (let i = 0; i < world.length; i++) {
+            for (let j = 0; j < world[i].length; j++) {
+                if (world[i][j] === 2 || world[i][j] === 3) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    document.onkeydown = function (e) {
+        if (e.keyCode == 37) { // LEFT
+            if (world[ninjaman.y][ninjaman.x - 1] != 1) {
+                if (ninjaman.x - 1 < 0) {
+                    if (world[ninjaman.y][world[ninjaman.y].length - 1] !== 1) {
+                        ninjaman.x = world[ninjaman.y].length - 1;
+                    }
+                } else {
+                    ninjaman.x--;
+                }
+            }
+        }
+        else if (e.keyCode == 39) { // RIGHT
+            if (world[ninjaman.y][ninjaman.x + 1] != 1) {
+                if (ninjaman.x + 1 > world[ninjaman.y].length - 1) {
+                    if (world[ninjaman.y][0] !== 1) {
+                        ninjaman.x = 0;
+                    }
+                } else {
+                    ninjaman.x++;
+                }
+            }
+        }
+        else if (e.keyCode == 40) { // DOWN
+            if (!world[ninjaman.y + 1] || world[ninjaman.y + 1][ninjaman.x] != 1) {
+                if (ninjaman.y + 1 > world.length - 1) {
+                    if (world[0][ninjaman.x] !== 1) {
+                        ninjaman.y = 0;
+                    }
+                } else {
+                    ninjaman.y++;
+                }
+            }
+        }
+        else if (e.keyCode == 38) { // UP
+            if (!world[ninjaman.y - 1] || world[ninjaman.y - 1][ninjaman.x] != 1) {
+                if (ninjaman.y - 1 < 0) {
+                    if (world[world.length - 1][ninjaman.x] !== 1) {
+                        ninjaman.y = world.length - 1;
+                    }
+                } else {
+                    ninjaman.y--;
+                }
+            }
+        }
+
+
+        if (world[ninjaman.y][ninjaman.x] === 2) {
+            world[ninjaman.y][ninjaman.x] = 0;
+            score++;
+            updateScore();
+        } else if (world[ninjaman.y][ninjaman.x] === 3) {
+            world[ninjaman.y][ninjaman.x] = 0;
+            score += 2;
+            updateScore();
+        }
+
+        drawNinjaman()
+        drawWorld()
+
+        if (gameOver()) {
+            createRandomWorld()
+            drawWorld()
+            ninjaman.x = 1;
+            ninjaman.y = 1;
+            drawNinjaman();
+            document.getElementById('prevScore').textContent = "Previous Score: " + score;
+            score = 0;
+            updateScore();
+        }
+    }
+
+</script>
+
+</html>

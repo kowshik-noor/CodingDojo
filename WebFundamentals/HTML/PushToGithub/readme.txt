@@ -1,0 +1,1 @@
+Hello, World! This is my first project that I will push to Github using VSCode. Very cool!
