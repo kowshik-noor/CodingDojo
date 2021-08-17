@@ -1,0 +1,30 @@
+.wrapper {
+  height: fit-content;
+  display: inline-block;
+  background: linear-gradient(red 50%, blue 50%) no-repeat;
+  width: 600px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 150px solid transparent;
+  border-left: 300px solid white ;
+  border-bottom: 150px solid transparent;
+  display: inline-block;
+}
+
+img {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    left: 25px;
+    top: 75px;
+}
+
+.blue {
+  /* background-color: blue;
+  display: inline-block;
+  height: 150px;
+  width: 100%; */
+}
