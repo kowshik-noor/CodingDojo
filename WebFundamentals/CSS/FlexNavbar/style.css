@@ -1,0 +1,43 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  padding: 5px 10px;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav > * {
+    margin: auto 0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  align-items: center;
+}
+
+li {
+  margin: 10px;
+}
+
+a {
+  color: rgb(212, 212, 212);
+  text-decoration: none;
+}
+
+.active {
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+.btn {
+    background-color: rgb(19, 204, 204);
+    color: white;
+    padding: 5px 10px;
+    font-size: 15px;
+}
