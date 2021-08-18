@@ -1,0 +1,39 @@
+body {
+  background-color: azure;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 80%;
+  margin: 20px auto;
+}
+
+img {
+  width: 200px;
+  margin: auto;
+}
+
+#red {
+  background-color: red;
+}
+
+#white {
+  background-color: white;
+}
+
+#blue {
+  background-color: blue;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
