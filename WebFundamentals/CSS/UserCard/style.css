@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.sm-icon {
+  height: 15px;
+}
+
+.user-icon {
+  width: 100px;
+  margin-top: -56px;
+  border: rgb(204, 204, 204) 3px solid;
+  border-radius: 50%;
+  background-color: white;
+  padding: 3px;
+}
+
+.card {
+  width: 70%;
+  height: fit-content;
+  margin: 50px auto;
+}
+
+.banner {
+  background-color: rgb(35, 163, 184);
+  height: 100px;
+}
+
+.content {
+  padding: 0px 20px 10px;
+  font-family: "Roboto", sans-serif;
+  border: rgb(204, 204, 204) 3px solid;
+  border-top: 0;
+}
+
+.content > * {
+  margin-bottom: 10px;
+}
+
