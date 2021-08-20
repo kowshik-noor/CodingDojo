@@ -1,0 +1,104 @@
+/* CSS reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fixed width container class that will "auto-center" itself */
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.btn {
+  background-color: rgb(19, 204, 204);
+  color: white;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  padding: 5px 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar > * {
+  margin: auto 0;
+}
+
+.navbar .nav-links {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  align-items: center;
+}
+
+.navbar li {
+  margin: 10px;
+}
+
+.navbar li a {
+  color: rgb(212, 212, 212);
+  text-decoration: none;
+}
+
+.nav-title {
+  color: white;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+}
+
+.col-2 {
+  flex: 2;
+}
+
+.col-3 {
+  flex: 3;
+}
+
+.col-4 {
+  flex: 4;
+}
+
+img.sm-icon {
+  height: 15px;
+}
+
+.card {
+  height: fit-content;
+  margin-bottom: 30px;
+}
+
+.card .content,
+.card .content-footer {
+  padding: 0px 20px 10px;
+  border: rgb(204, 204, 204) 3px solid;
+  border-top: 0;
+}
+
+.content-footer {
+  padding-top: 10px;
+}
+
+img.md-icon {
+  height: 30px;
+  margin: 0 1px;
+}
+
+.card .title-banner {
+  background-color: black;
+  color: white;
+  padding: 10px 20px 10px;
+  display: flex;
+  align-items: center;
+}
