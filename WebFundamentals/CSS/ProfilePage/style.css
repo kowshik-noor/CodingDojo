@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.sm-icon {
+  height: 15px;
+}
+
+.user-icon-lg {
+  width: 100px;
+  margin-top: -56px;
+  border: rgb(204, 204, 204) 3px solid;
+  border-radius: 50%;
+  background-color: white;
+  padding: 3px;
+}
+
+.card {
+  height: fit-content;
+  margin-bottom: 30px
+}
+
+.banner {
+  background-color: rgb(35, 163, 184);
+  height: 100px;
+}
+
+.content {
+  padding: 0px 20px 10px;
+  border: rgb(204, 204, 204) 3px solid;
+  border-top: 0;
+}
+
+.content > * {
+  margin-bottom: 10px;
+}
+
+/* navbar selectors */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 10px 10%;
+  position: sticky;
+  top: 0;
+}
+
+
+.nav > * {
+  margin: auto 0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  align-items: center;
+}
+
+li {
+  margin: 10px;
+}
+
+.nav-links a {
+  color: rgb(212, 212, 212);
+  text-decoration: none;
+}
+
+.nav-links .active {
+  color: white;
+}
+
+.nav-title {
+  color: white;
+  margin-right: 10px;
+}
+
+.btn {
+  background-color: rgb(35, 163, 184);
+  color: white;
+  padding: 5px 10px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.title-banner {
+  background-color: black;
+  color: white;
+  padding: 10px 20px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.sub-content {
+  padding: 20px 20px 10px;
+}
+
+.notification {
+  display: inline-block;
+  border-radius: 50%;
+  min-width: 20px;
+  min-height: 20px;
+  padding: 5px;
+  background: rgb(212, 212, 212);
+  color: black;
+  text-align: center;
+  line-height: 1;
+  box-sizing: content-box;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.notification span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.connect-requests {
+  padding-top: 10px;
+}
+
+.connect-requests li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.md-icon {
+  height: 30px;
+  margin: 0 1px;
+}
+
+.user {
+  display: flex;
+}
+
+.user-icon-sm {
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.row {
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+}
+
+.col-3 {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.col {
+  flex: 1;
+}
