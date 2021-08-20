@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Clicker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h1>Dojonary</h1>
+            <input type="text" placeholder="Search" name="searchbar" id="searchbar">
+            <button onclick="logOut(this)" class="btn" id="login">Login</button>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                <div class="card">
+                    <div class="row card-row">
+                        <div class="word col">
+                            <div class="word-text">
+                                <h1>ninja</h1>
+                                <h3><em>noun</em></h3>
+                                <p>Plural: <em>ninjas</em></p> 
+                            </div>
+                            <button onclick="like()" class="likes btn">13 likes</button>
+                        </div>
+                        <div class="definition col-3">
+                            <h3>A practicioner skilled in the <a href="#">Japanese</a> art of <a href="#">ninjutsu</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="row card-row">
+                        <div class="word col">
+                            <div class="word-text">
+                                <h1>ninja</h1>
+                                <h3><em>noun</em></h3>
+                                <p>Plural: <em>ninjas</em></p>
+                            </div>
+                            <button onclick="like()" class="likes btn">37 likes</button>
+                        </div>
+                        <div class="definition col-3">
+                            <h3>A <a href="#">programmer</a> who breaks down problems with <a href="#">zen</a>-like focus</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card add-define">
+                    <h2>Dojonary is defined by <strong>YOU</strong></h2>
+                    <button onclick="this.remove()" class="btn" id="add">Add Definition</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
