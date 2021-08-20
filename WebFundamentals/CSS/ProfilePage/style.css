@@ -27,7 +27,7 @@
   height: 100px;
 }
 
-.content {
+.content, .content-footer {
   padding: 0px 20px 10px;
   border: rgb(204, 204, 204) 3px solid;
   border-top: 0;
@@ -160,4 +160,8 @@ li {
 
 .col {
   flex: 1;
+}
+
+.content-footer {
+  padding-top: 10px;
 }
