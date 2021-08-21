@@ -92,4 +92,12 @@ h3 {
     background-color: rgb(65, 118, 221);
 }
 
+.user-icon-lg {
+  width: 100px;
+  margin-top: -56px;
+  border: rgb(204, 204, 204) 3px solid;
+  border-radius: 50%;
+  background-color: white;
+  padding: 3px;
+}
 
