@@ -32,7 +32,7 @@
             
                 <img class="user-icon-lg" id="jane" src="images/jane-m.jpg" alt="jane">
             
-                <h1>Jane Doe</h1>
+                <h1 id="username">Jane Doe</h1>
             
                 <div class="location">
                     <img class="sm-icon" src="icons/map-marker.png" alt="map marker icon">
@@ -46,7 +46,7 @@
             
                 <div class="edit">
                     <img class="sm-icon" src="icons/gear.png" alt="gear icon">
-                    <a href="#">edit profile</a>
+                    <a onclick="changeUsername()" href="#">edit profile</a>
                 </div>
             </div>
             </div> 
@@ -64,29 +64,29 @@
         <div class="col">
             <div class="requests card">
         <div class="title-banner">
-            <div class="notification"><span>2</span></div>
+            <div class="notification"><span id="request-number">2</span></div>
             <h3>Connection Requests</h3>
         </div>
         <div class="content">
             <ul class="connect-requests">
-                <li>
+                <li id="todd">
                     <div class="user">
                         <img class="user-icon-sm" src="images/todd-s.jpg" alt="todd">
                         <h2>Todd E</h2>
                     </div>
                     <div class="actions">
-                        <a href="#"><img class="md-icon" src="icons/accept-circle.png" alt="accept"></a>
-                        <a href="#"><img class="md-icon" src="icons/close-circle.png" alt="decline"></a>
+                        <a onclick="acceptRequest(this.parentElement.parentElement)" href="#"><img class="md-icon" src="icons/accept-circle.png" alt="accept"></a>
+                        <a onclick="declineRequest(this.parentElement.parentElement)" href="#"><img class="md-icon" src="icons/close-circle.png" alt="decline"></a>
                     </div>
                 </li>
-                <li>
+                <li id="phill">
                     <div class="user">
                         <img class="user-icon-sm" src="images/phil-s.jpg" alt="phil">
                         <h2>Phil K</h2>
                     </div>
                     <div class="actions">
-                        <img class="md-icon" src="icons/accept-circle.png" alt="accept">
-                        <img class="md-icon" src="icons/close-circle.png" alt="decline">
+                        <a onclick="acceptRequest(this.parentElement.parentElement)" href="#"><img class="md-icon" src="icons/accept-circle.png" alt="accept"></a>
+                        <a onclick="declineRequest(this.parentElement.parentElement)" href="#"><img class="md-icon" src="icons/close-circle.png" alt="decline"></a>
                     </div>
                 </li>
             </ul>
@@ -94,7 +94,7 @@
             </div>
             <div class="connections card">
         <div class="title-banner">
-            <div class="notification"><span>500+</span></div>
+            <div class="notification"><span id="connections">418</span></div>
             <h3>Your Connections</h3>
         </div>
         <div class="content">
@@ -131,5 +131,7 @@
             </div>
         </div>
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
