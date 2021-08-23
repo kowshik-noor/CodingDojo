@@ -17,7 +17,7 @@ let pizzaBall = pizzaOven("pizza ball", "traditional", ["mozarella"], ["extra ch
 let myPizza = pizzaOven("cheesy crust", "vodka", ["mozarella"], ["extra cheese", "red onion", "mushroom", "green pepper"])
 
 let arrayItemPicker = (arr) => {
-    return arr[Math.floor(Math.random() * (arr.length - 1))];
+    return arr[Math.floor(Math.random() * arr.length)];
 }
 
 let arrayListMaker = (arr) => {
