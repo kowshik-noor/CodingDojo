@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1 class="nav-title">DojoWeather</h1>
+        <ul class="nav-links">
+            <li><a href="#">Burbank</a></li>
+            <li><a href="#">Chicago</a></li>
+            <li><a href="#">Dallas</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <header>
+            <h2>San Jose</h2>
+
+            <div id="unit-select">
+                <label for="temperature">shown temperature in</label>
+                <select name="temperature" id="temperature">
+                    <option value="fahrenheit">&#176;F</option>
+                    <option value="celsius">&#176;C</option>
+                </select>
+            </div>
+        </header>
+        <hr class="style-one">
+
+        <div class="row">
+            <div class="col card">
+                <h2>Today</h2>
+                <img src="assets/some_rain.png" alt="rain cloud">
+                <p>some rain</p>
+                <div class="temperatures" id="today">
+                    <span class="high"><span>75</span>&#176;</span>
+                    <span class="low"><span>65</span>&#176;</span>
+                </div>
+            </div>
+            <div class="col card">
+                <h2>Tomorrow</h2>
+                <img src="assets/some_sun.png" alt="sun">
+                <p>some sun</p>
+                <div class="temperatures" id="tomorrow">
+                    <span class="high"><span>80</span>&#176;</span>
+                    <span class="low"><span>66</span>&#176;</span>
+                </div>
+            </div>
+            <div class="col card">
+                <h2>Friday</h2>
+                <img src="assets/some_clouds.png" alt="cloud">
+                <p>some clouds</p>
+                <div class="temperatures" id="friday">
+                    <span class="high"><span>69</span>&#176;</span>
+                    <span class="low"><span>61</span>&#176;</span>
+                </div>
+            </div>
+            <div class="col card">
+                <h2>Saturday</h2>
+                <img src="assets/some_sun.png" alt="sun">
+                <p>some sun</p>
+                <div class="temperatures" id="saturday">
+                    <span class="high"><span>78</span>&#176;</span>
+                    <span class="low"><span>70</span>&#176;</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <img src="assets/cookie.png" alt="chocolate chip cookie">
+            <div>
+                <h3>Stop! Cookie time</h3>
+                <p>We use cookies (sadly not edible ones) to personalize content and ads, to provide social media features and to analyse our traffic. <a href="#">Read more...</a></p>
+            </div>
+            <button onclick="this.parentElement.remove()">I Accept</button>
+        </footer>
+    </div>
+    
+    
+    <script src="app.js"></script>
+</body>
+</html>

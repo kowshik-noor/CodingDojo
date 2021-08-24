@@ -1,0 +1,157 @@
+/* CSS reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Fixed width container class that will "auto-center" itself */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(167, 196, 244);
+  padding: 10px 10%;
+  position: sticky;
+  top: 0;
+}
+
+.navbar > * {
+  margin: auto 0;
+}
+
+.nav-title {
+  color: white;
+}
+
+.navbar .nav-links {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  align-items: center;
+}
+
+.navbar li {
+  margin: 10px;
+}
+
+.navbar li a {
+  color: white;
+  text-decoration: none;
+  font-size: large;
+}
+
+header {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#unit-select {
+  display: flex;
+  align-items: center;
+}
+
+header h2 {
+  font-weight: normal;
+  font-size: 33px;
+}
+
+#unit-select > * {
+  margin: 0 5px;
+}
+
+/* Gradient color1 - color2 - color1 */
+
+hr.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+  background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+  background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+  background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
+}
+
+.card {
+  padding: 20px;
+  background-color: rgb(238, 238, 238);
+  margin: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.col {
+  flex: 1;
+}
+
+.row {
+  display: flex;
+}
+
+.card h2 {
+  font-weight: normal;
+}
+
+.temperatures {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card img {
+  border-radius: 50%;
+  width: 200px;
+}
+
+.card > * {
+  margin: 10px;
+}
+
+.high {
+  color: rgb(190, 59, 49);
+  font-weight: bold;
+}
+
+.low {
+  color: rgb(65, 118, 221);
+  font-weight: bold;
+}
+
+select {
+  font-size: 16px;
+  padding: 5px;
+}
+
+footer {
+  display: flex;
+  position: fixed;
+  bottom: 5px;
+  height: fit-content;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(238,238,238);
+  border: 3px solid black;
+  margin: 0 auto;
+  width: 80%;
+}
+
+footer > * {
+  margin: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  color: black;
+  font-size: 15px;
+  border: black 2px solid;
+  box-shadow: 3px 3px black;
+  width: 100px;
+  background-color: rgb(167, 196, 244);
+}
