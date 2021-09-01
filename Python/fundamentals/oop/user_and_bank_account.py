@@ -15,7 +15,7 @@ class User:
         return self
 
     def display_user_balance(self, account_name):
-        print(f"User: {self.name}, Account: {self.accounts[account_name]}, Balance: ${self.account.balance}")
+        print(f"User: {self.name}, Account: {account_name}, Balance: ${self.accounts[account_name].balance}")
 
     def transfer_money(self, account_name, other_user_account_name, other_user, amount):
         self.make_withdrawal(account_name,amount)
@@ -56,5 +56,9 @@ class BankAccount:
             print(
                 f"Interest Rate = {account.int_rate*100}%, Balance = {account.balance}")
 
+noor = User('kowshik')
+noor.make_account('primary', 0.01)
+
+noor.display_user_balance('primary')
 
 
