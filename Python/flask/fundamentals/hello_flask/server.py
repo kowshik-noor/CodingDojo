@@ -20,9 +20,8 @@ def hi(name):
 def repeat(num, message):
     return message * num
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def nope(path):
+@app.route('/<something>')
+def nope(something):
     return 'Sorry! No response. Try again.'
 
 
