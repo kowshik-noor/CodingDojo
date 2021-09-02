@@ -8,17 +8,21 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello World!'  # Return the string 'Hello World!' as a response
 
+
 @app.route('/dojo')
 def dojo():
     return 'Dojo!'
+
 
 @app.route('/say/<string:name>')
 def hi(name):
     return f'Hi {name}!'
 
+
 @app.route('/repeat/<int:num>/<string:message>')
 def repeat(num, message):
     return message * num
+
 
 @app.route('/<something>')
 def nope(something):
