@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkerboard</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/style.css') }}>
+</head>
+<body>
+    <div class="container">
+        <h1>*** Checkerboard ***</h1>
+        <table cellspacing="0" cellpadding="0">
+            {% set ns = namespace(colored=True) %}
+            {% for row in range(x): %}
+                <tr>
+                    {% for column in range(y): %}
+                        {% if ns.colored: %}
+                            {% if column != y-1 and y%2==0 or y%2 == 1: %}
+                                {% set ns.colored = False %}
+                            {% endif %}
+                            <td class="colored"></td>
+                        {% else: %}
+                            {% if column != y-1 and y%2==0 or y%2==1: %}
+                                {% set ns.colored = True %}
+                            {% endif %}
+                            <td></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
