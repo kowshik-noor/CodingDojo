@@ -1,0 +1,21 @@
+USE users_schema;
+INSERT INTO users (first_name, last_name, email)
+VALUES 
+('Kowshik', 'Noor', 'animegurl@icloud.com'),
+('Sbeve', 'Buttlicker', 'shebelieved@gmail.com'),
+('Sbren', 'Chad', 'shesbroken@aol.com');
+
+SELECT * FROM users
+WHERE email = 'animegurl@icloud.com';
+
+SELECT * FROM users
+WHERE id = 3;
+
+UPDATE users SET last_name = 'Pancakes', updated_at = NOW()
+WHERE id = 3;
+
+DELETE FROM users WHERE id = 2;
+
+SELECT * FROM users ORDER BY first_name;
+
+SELECT * FROM users ORDER BY first_name DESC;

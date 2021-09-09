@@ -1,0 +1,33 @@
+USE dojos_and_ninjas_schema;
+
+INSERT INTO dojos (name)
+VALUES
+('Elite'),
+('Kings'),
+('ATT');
+
+DELETE FROM dojos;
+
+INSERT INTO dojos (name)
+VALUES
+('Eagle Fang'),
+('Miyagi Do'),
+('Cobra Kai');
+
+INSERT INTO ninjas (first_name, last_name, age, dojos_id)
+VALUES
+('Miguel', 'Hernandez', 15, 4),
+('Tory', 'Lanes', 21, 4),
+('William', 'Zabka', 40, 4),
+('Daniel', 'San', 50, 5),
+('Son', 'Zabka', 16, 5),
+('Mary', 'Mousser', 15, 5),
+('John', 'Kreese', 70, 6),
+('Stingray', 'Beard', 30, 6),
+('Eli', 'Hawk', 16, 6)
+
+SELECT * FROM ninjas WHERE dojos_id = 4;
+
+SELECT * FROM ninjas WHERE dojos_id = 6;
+
+SELECT dojos.* from ninjas JOIN dojos ON dojos.id = ninjas.dojos_id WHERE ninjas.id = 9;

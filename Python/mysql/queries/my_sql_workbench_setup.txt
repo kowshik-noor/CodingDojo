@@ -1,0 +1,7 @@
+USE twitter;
+INSERT INTO users (first_name, last_name, handle, birthday) VALUES ('Kowshik', 'Noor', 'candiceligmaDN','2000-07-16');
+SET SQL_SAFE_UPDATES = 0;
+UPDATE users SET first_name = 'White', handle = 'whiteiverson' WHERE last_name = 'Iverson';
+-- RIP :'(
+DELETE FROM users WHERE first_name = 'Kobe';
+SELECT * FROM users;
