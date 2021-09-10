@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>New Ninja</title>
+{% endblock head %}
+
+{% block body %}
+    <div class="container mt-3">
+        <div class="columns">
+            <div class="column is-three-quarters">
+                <h1 class="title is-1 mb-0">New Ninja</h1>
+                <form action="/ninjas" method="POST">
+                    <div class="field">
+                        <label for="dojo" class="label">Dojo:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="dojos_id">
+                                    {% for dojo in dojos %}
+                                        <option value="{{dojo.id}}">{{ dojo.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for='first_name'>First Name:</label>
+                        <div class="control">
+                            <input name="first_name" id="first_name" class="input" type="text" placeholder="First Name">
+                        </div>
+                    </div>
+    
+                    <div class="field">
+                        <label class="label" for='last_name'>Last Name:</label>
+                        <div class="control">
+                            <input name="last_name" id="last_name" class="input" type="text" placeholder="Last Name">
+                        </div>
+                    </div>
+    
+                    <div class="field">
+                        <label for="age" class="label">Age:</label>
+                        <div class="control">
+                            <input name="age" id="age" class="input" type="number" placeholder="Age">
+                        </div>
+                    </div>
+    
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-link">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    
+            <div class="column is-flex is-justify-content-end">
+                <a href="/dojos">Home</a>
+            </div>
+        </div>
+    
+    </div>
+{% endblock body %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Dojos</title>
+{% endblock head %}
+
+{% block body %}
+    <div class="columns">
+        <div class="column is-half">
+            <h2 class="title is-2">New Dojo</h2>
+            <form action="/dojos" method="POST">
+                <div class="field is-horizontal ">
+                    <label for="name" class="mr-3 label">Name</label>
+                    <div class="control field-body">
+                        <input type="text" class="input" id="name" placeholder="Name" name="dojo_name">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="column is-half">
+            <h2 class="title is-2">All Dojos</h2>
+            <div class="card p-4">
+                <div class="content is-medium">
+                    {% for dojo in dojos %}
+                        <p><a href="/dojos/{{dojo.id}}">{{ dojo.name }}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="section">
+                <a href="/ninjas" class="button is-link is-inverted">Add Ninja</a>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
