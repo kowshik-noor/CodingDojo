@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Edit</title>
+{% endblock head %}
+
+{% block body %}
+        <div class="container mt-3">
+            <div class="columns">
+                <div class="column is-three-quarters">
+                    <h1 class="title is-1 mb-0">Edit User {{ user.id }}</h1>
+                    <form action="/users/{{user.id}}/edit" method="POST">
+                        <div class="field">
+                            <label class="label" for='first_name'>First Name:</label>
+                            <div class="control">
+                                <input name="first_name" id="first_name" class="input" type="text" placeholder="First Name" value="{{user.first_name}}">
+                            </div>
+                        </div>
+        
+                        <div class="field">
+                            <label class="label" for='last_name'>Last Name:</label>
+                            <div class="control">
+                                <input name="last_name" id="last_name" class="input" type="text" placeholder="Last Name" value="{{user.last_name}}">
+                            </div>
+                        </div>
+        
+                        <div class="field">
+                            <label for="email" class="label">Email:</label>
+                            <div class="control">
+                                <input name="email" id="email" class="input" type="email" placeholder="Email" value="{{user.email}}">
+                            </div>
+                        </div>
+        
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-primary">Update</button>
+                            </div>
+                            <div class="control">
+                                <a href="/users/{{user.id}}" class="button is-link is-inverted">Show User</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        
+                <div class="column is-flex is-justify-content-end">
+                    <a href="/users">Home</a>
+                </div>
+            </div>
+        
+        </div>
+{% endblock body %}

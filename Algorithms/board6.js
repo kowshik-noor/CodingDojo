@@ -186,6 +186,65 @@ class SLList{
         }
         console.log("You BAKA! The location does not exist >:(")
     }
+
+    // credit to jase kraft
+    moveMinToFront(){
+        // your code here
+        var min = this.head.value
+        var runner = this.head
+        var counter = 0
+
+        while(runner != null){
+            if(runner.value < min){
+                min = runner.value
+                counter++
+            }
+            runner = runner.next
+        }
+    
+        if(counter == 0){
+            console.log("Minimum is already at the front of the list!")
+            return
+        }
+    
+        this.addToFront(min)
+
+        runner = this.head.next
+
+        while(runner.value != min){
+            var preNode = runner
+            runner = runner.next
+        }
+
+        preNode.next = runner.next
+        
+    }
+
+    // credit to jase kraft
+    // find the location of the highest value in the list, and move that value to the back
+    moveMaxToBack(){
+        // your code here
+        var max = this.head.value
+        var runner = this.head
+    
+        while (runner != null) {
+            if(max < runner.value){
+                max = runner.value
+            }
+            runner = runner.next
+        }
+    
+        this.addToBack(max)
+    
+        runner= this.head
+    
+        while(runner.value != max){
+            var preNode = runner
+            runner = runner.next
+    }
+
+        preNode.next = runner.next
+    }
 }
 
 
