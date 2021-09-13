@@ -10,18 +10,6 @@
 <body>
     <div class="columns is-centered">
         <section class="column is-half">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="notification is-danger is-light">
-                        <button class="delete"></button>
-                        <ul>
-                            {% for message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
-            {% endwith %}
             <div class="card p-3">
                 <h1 class="title">Dojo Survey</h1>
                 <form action="/submit" method="POST">
@@ -79,6 +67,18 @@
                     </div>
                 </form>
             </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-danger is-light">
+                <button class="delete"></button>
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% endwith %}
         </section>
     </div>
 </body>
