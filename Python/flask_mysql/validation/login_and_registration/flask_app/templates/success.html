@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Dashboard</title>
+{% endblock head %}
+
+{% block body %}
+    <h1 class="title is-centered is-1">Hello, {{ user.first_name }}!!!!!!</h1>
+    <div class="control">
+        <a href="/logout" class="button is-primary">Logout</a>
+    </div>
+{% endblock body %}
