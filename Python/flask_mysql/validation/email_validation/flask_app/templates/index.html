@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Email Validation</title>
+{% endblock head %}
+
+{% block body %}
+    <form action="/success" method="POST">
+        <div class="field">
+            <label for="email" class="label">Email</label>
+            <div class="control">
+                <!-- input type had to be set to text in order to show that the back-end validations work -->
+                <input name="email" class="input" type="text" placeholder="e.g. alexsmith@gmail.com">
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-primary">Add Email</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock body %}

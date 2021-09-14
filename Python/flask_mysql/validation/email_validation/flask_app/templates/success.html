@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Success Page</title>
+{% endblock head %}
+
+{% block body %}
+    <div class="content">
+        <h3><u>Email Addresses Entered:</u></h3>
+        {% for email in emails: %}
+            <p>{{ email.email }}&mdash;{{ email.created_at.strftime('%m/%d/%y %-I:%M %p') }}</p>
+        {% endfor %}
+    </div>
+{% endblock body %}
