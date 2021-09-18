@@ -22,7 +22,7 @@ alwaysHungry([4, 1, 5, 7, 2]);
 
 // Given an array and a value cutoff, return a new array containing only the values larger than cutoff.
 function highPass(arr, cutoff) {
-    return arr.filter(num => num > 5);
+    return arr.filter(num => num > cutoff);
 }
 var result = highPass([6, 8, 3, 10, -2, 5, 9], 5);
 console.log(result); // we expect back [6, 8, 10, 9]
@@ -58,12 +58,12 @@ function fibonacciArray(n) {
     // the [0, 1] are the starting values of the array to calculate the rest from
     var fibArr = [0, 1];
     // your code here
-    while (fibArr.length !== 10) {
+    while (fibArr.length < n) {
         fibArr.push(fibArr[fibArr.length-1] + fibArr[fibArr.length-2])
     }
     return fibArr;
 }
-   
+
 var result = fibonacciArray(10);
 console.log(result); // we expect back [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 
