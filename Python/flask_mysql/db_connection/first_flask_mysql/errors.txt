@@ -1,0 +1,33 @@
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'host' ([Errno 8] nodename nor servname provided, or not known)")
+pymysql.err.OperationalError: (1046, 'No database selected')
+pymysql.err.DataError: (1366, "Incorrect string value: '\\xF0\\x9F\\xA5\\xB8' for column 'first_name' at row 1")
+UnicodeEncodeError: 'ascii' codec can't encode character '\U0001f978' in position 95: ordinal not in range(128)
+TypeError: query_db() missing 1 required positional argument: 'data'
+pymysql.err.ProgrammingError: execute() first
+AttributeError: 'str' object has no attribute 'mogrify'
+Traceback (most recent call last):
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/server.py", line 3, in <module>
+    from friend import Friend
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/friend.py", line 2, in <module>
+    from mysqlconnection import connectToMySQL
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/mysqlconnection.py", line 39
+    return MySQLConnection(db)
+    ^
+SyntaxError: 'return' outside function
+Traceback (most recent call last):
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/server.py", line 3, in <module>
+    from friend import Friend
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/friend.py", line 2, in <module>
+    from mysqlconnection import connectToMySQL
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/mysqlconnection.py", line 39
+    def connectToMySQL(db):
+IndentationError: expected an indented block
+Traceback (most recent call last):
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/server.py", line 3, in <module>
+    from friend import Friend
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/friend.py", line 2, in <module>
+    from mysqlconnection import connectToMySQL
+  File "/Users/kowshiknoor/Desktop/CodingDojo/Python/flask_mysql/db_connection/first_flask_mysql/mysqlconnection.py", line 39
+    def connectToMySQL(db):
+IndentationError: unexpected unindent
