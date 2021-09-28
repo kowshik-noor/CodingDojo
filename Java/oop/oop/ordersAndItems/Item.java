@@ -1,9 +1,21 @@
 public class Item {
     private String name;
-    public double price;
+    private double price;
 
+    // constructor
     public Item(String name, double price) {
         this.name = name;
         this.price = price;
     }
+    
+    // getters
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+
 }
