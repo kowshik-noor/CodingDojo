@@ -7,6 +7,7 @@ public class Gorilla extends Mammal {
     public void eatBananas() {
         System.out.println("The gorilla is satisfied.");
         this.energyLevel += 10;
+
     }
 
     public void climb() {
