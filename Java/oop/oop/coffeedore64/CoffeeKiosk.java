@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CoffeeKiosk {
     private ArrayList<Item> menu;
@@ -22,6 +23,7 @@ public class CoffeeKiosk {
     }
 
     public void newOrder() {
+
         String name = System.console().readLine("Please enter customer name for new order: \n");
 
         Order order = new Order(name);
@@ -44,7 +46,7 @@ public class CoffeeKiosk {
             // get input from the user again until they quit
             itemNumber = System.console().readLine("Please enter a menu item index or q to quit: \n");
         }
-
+        
         // print the order details
         order.display();
 
