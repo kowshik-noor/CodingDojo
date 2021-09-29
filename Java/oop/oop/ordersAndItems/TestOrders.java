@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+import Java.oop.oop.coffeedore64.Item;
+import Java.oop.oop.coffeedore64.Order;
+
 public class TestOrders {
     public static void main(String[] args) {
         // Menu items
