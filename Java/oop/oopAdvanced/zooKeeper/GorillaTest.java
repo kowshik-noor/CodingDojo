@@ -3,11 +3,14 @@ public class GorillaTest {
         Gorilla kong = new Gorilla();
         kong.displayEnergy();
 
-        kong.climb();
-        kong.eatBananas();
         kong.throwSomething();
-
-        kong.displayEnergy();
+        kong.throwSomething();
+        kong.throwSomething();
+        kong.eatBananas();
+        kong.eatBananas();
+        kong.climb();
         
+        kong.displayEnergy();
+
     }
 }
