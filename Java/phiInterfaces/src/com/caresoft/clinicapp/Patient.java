@@ -1,5 +1,8 @@
 package com.caresoft.clinicapp;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Patient extends User implements PHICompliantUser {
     
     private String firstName;
@@ -12,7 +15,26 @@ public class Patient extends User implements PHICompliantUser {
     int memberNumber;
     PatientRecord medicalHistory;
     
-    // TO DO: Constructor
+    
+//    Constructor
+    public Patient() {
+		super();
+	}
+
+
+	public Patient(String firstName, String lastName, Physician primaryCarePhysician,
+			ArrayList<Integer> currentPrescriptionsByRX, int providerCode, int memberNumber,
+			PatientRecord medicalHistory) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.primaryCarePhysician = primaryCarePhysician;
+		this.currentPrescriptionsByRX = currentPrescriptionsByRX;
+		this.providerCode = providerCode;
+		this.memberNumber = memberNumber;
+		this.medicalHistory = medicalHistory;
+	}
+    
     
     public boolean requestAppointment(Date date, Physician doctor) {
         boolean successfullyAdded = false;
@@ -73,12 +95,17 @@ public class Patient extends User implements PHICompliantUser {
 	@Override
 	public boolean assignPin(int pin) {
 		// TODO Auto-generated method stub
-		return false;
+		if (pin != 1234 || pin != 4321 && pin > 999 && pin < 10000) {
+			this.pin = pin;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean isAuthorized(Integer confirmedAuthID) {
 		// TODO Auto-generated method stub
-		return false;
+		return confirmedAuthID == this.id;
 	}
 }

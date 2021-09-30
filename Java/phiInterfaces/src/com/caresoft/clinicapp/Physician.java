@@ -4,17 +4,29 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Date;
 
-public class Physician implements PHIAdminCompliant, PHICompliantUser {
+public class Physician extends User implements PHIAdminCompliant, PHICompliantUser {
 	
     private HashSet<Patient> patients;
     private ArrayList<String> securityIncidents;
     
-    // ... you see other existing member variables. ...
+
+
+
+	// ... you see other existing member variables. ...
     
     // TO DO: Constructor
+    public Physician() {
+		super();
+	}
+
+	public Physician(HashSet<Patient> patients, ArrayList<String> securityIncidents) {
+		super();
+		this.patients = patients;
+		this.securityIncidents = securityIncidents;
+	}
     
     public void prescribeRXTo(Patient patient, Integer rxNumber) {
-        patient.currentPrescriptionsByRX.add(rxNumber);
+    	patient.currentPrescriptionsByRX.add(rxNumber);
     }
     
     
@@ -57,20 +69,29 @@ public class Physician implements PHIAdminCompliant, PHICompliantUser {
 	@Override
 	public boolean assignPin(int pin) {
 		// TODO Auto-generated method stub
-		return false;
+		if (pin > 99999) {
+			this.setPin(pin);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 
 	@Override
 	public boolean isAuthorized(Integer confirmedAuthID) {
-		// TODO Auto-generated method stub
-		return false;
+		if (confirmedAuthID == this.id) {
+			authIncident();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public ArrayList<String> reportSecurityIncidents() {
 		// TODO Auto-generated method stub
-		return null;
+		return securityIncidents;
 	}
 
 }

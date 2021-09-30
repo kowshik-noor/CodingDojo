@@ -29,19 +29,29 @@ public class AdminUser extends User implements PHIAdminCompliant, PHICompliantUs
 	@Override
 	public boolean assignPin(int pin) {
 		// TODO Auto-generated method stub
-		return false;
+		if (pin > 99999) {
+			this.setPin(pin);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean isAuthorized(Integer confirmedAuthID) {
 		// TODO Auto-generated method stub
-		return false;
+		if (confirmedAuthID == this.id) {
+			authIncident();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public ArrayList<String> reportSecurityIncidents() {
 		// TODO Auto-generated method stub
-		return null;
+		return securityIncidents;
 	}
 
 }
