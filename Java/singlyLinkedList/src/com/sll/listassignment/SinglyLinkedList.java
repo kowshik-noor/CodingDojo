@@ -97,6 +97,8 @@ public class SinglyLinkedList {
     			removedVal.next = null;
     			return;
     		}
+    		counter++;
+    		runner = runner.next;
     	}
     	
     	System.out.println("Index doesn't exist!");
