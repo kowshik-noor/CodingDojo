@@ -1,0 +1,20 @@
+.row {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.col {
+	flex: 1;
+}
+
+h1, a, .col {
+	text-align: center;
+}
+
+.blue {
+	color: blue;
+}
+
+.green {
+	color: green;
+}
