@@ -8,19 +8,19 @@
 		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.noor.daikichifull</groupId>
-	<artifactId>daikichiFull</artifactId>
+	<groupId>com.codingdojo.thymeleaftest</groupId>
+	<artifactId>thymeleafTest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>daikichiFull</name>
-	<description>A simple website that will greet the user and give them luck.</description>
+	<name>thymeleafTest</name>
+	<description>Testing out how thymeleaf works.</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-	 	<dependency>
-    		<groupId>org.springframework.boot</groupId>             
-    		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -33,7 +33,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
- 		<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>

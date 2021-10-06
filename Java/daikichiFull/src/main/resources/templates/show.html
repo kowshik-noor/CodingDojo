@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Omikuji</title>
+<link rel="stylesheet" data-th-href="@{/style.css}" />
+</head>
+<body>
+<h1>Here's Your Omikuji!</h1>
+<h2>In <span data-th-text="${session.num}"></span> years, you will live in <span data-th-text="${session.city}"></span> with <span data-th-text="${session.person}"></span> as your roommate, <span data-th-text="${session.hobby}"></span> for a living. The next time you see a <span data-th-text="${session.thing}"></span>, you will have good luck. Also, <span data-th-text="${session.nice}"></span></h2>
+</body>
+</html>
