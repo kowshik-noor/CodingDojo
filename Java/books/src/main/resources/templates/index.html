@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Share</title>
+</head>
+<body>
+    <h1>All Books</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Language</th>
+                <th>Number of Pages</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-th-each="book:${books}">
+                <td data-th-text="${book.id}"></td>
+                <td data-th-text="${book.title}"></td>
+                <td data-th-text="${book.language}"></td>
+                <td data-th-text="${book.numberOfPages}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
