@@ -35,20 +35,18 @@ public class ExpenseService {
 		expenseRepo.deleteById(id);
 	}
 	
-	public Expense updateExpense(Long id, 
-			String name, 
-			String vendor, 
-			Double amt,
-			String desc) {
-		Expense expense = this.findExpense(id);
+	public Expense updateExpense(Expense e) {
+		Expense expense = this.findExpense(e.getId());
+		
 		if (expense == null) {
-			return null;
+			return expense;
 		}
 		
-		expense.setAmount(amt);
-		expense.setDescription(desc);
-		expense.setName(name);
-		expense.setVendor(vendor);
+		expense.setAmount(e.getAmount());
+		expense.setDescription(e.getDescription());
+		expense.setName(e.getName());
+		expense.setVendor(e.getVendor());
+		
 		expenseRepo.save(expense);
 		return expense;
 	}

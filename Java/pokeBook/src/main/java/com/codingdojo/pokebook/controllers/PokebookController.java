@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.codingdojo.pokebook.models.Expense;
 import com.codingdojo.pokebook.services.ExpenseService;
@@ -33,6 +35,23 @@ public class PokebookController {
 			return "index";
 		} else {
 			expenseServ.createExpense(expense);
+			return "redirect:/expenses";
+		}
+	}
+	
+	@GetMapping("/expenses/edit/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		Expense expense = expenseServ.findExpense(id);
+		model.addAttribute("expense", expense);
+		return "edit";
+	}
+	
+	@PutMapping("/expenses/{id}")
+	public String update(@Valid @ModelAttribute("expense") Expense expense, BindingResult result, @PathVariable("id") Long id) {
+		if (result.hasErrors()) {
+			return "edit";
+		} else {
+			expenseServ.updateExpense(expense);
 			return "redirect:/expenses";
 		}
 	}
