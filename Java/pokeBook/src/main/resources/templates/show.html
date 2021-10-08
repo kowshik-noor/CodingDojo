@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Expense</title>
+</head>
+<body>
+    <h1>Expense Details</h1>
+    <a href="/expenses">Go Back</a>
+
+    <p>Expense name: <span data-th-text="${expense.name}"></span></p>
+    <p>Expense description: <span data-th-text="${expense.description}"></span></p>
+    <p>Vendor: <span data-th-text="${expense.vendor}"></span></p>
+    <p>Amount spent: $<span data-th-text="${#numbers.formatDecimal(expense.amount, 0, 'COMMA', 2, 'POINT')}"></span></p>
+</body>
+</html>

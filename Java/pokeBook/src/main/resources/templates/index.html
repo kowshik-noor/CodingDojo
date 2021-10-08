@@ -18,10 +18,16 @@
         </thead>
         <tbody>
             <tr data-th-each="expense:${expenses}">
-                <td data-th-text="${expense.name}"></td>
+                <td><a data-th-href="@{/expenses/{id}(id=${expense.id})}" data-th-text="${expense.name}"></a></td>
                 <td data-th-text="${expense.vendor}"></td>
                 <td>$<span data-th-text="${#numbers.formatDecimal(expense.amount, 0, 'COMMA', 2, 'POINT')}"></span></td>
-                <td><a data-th-href="@{/expenses/edit/{id}(id=${expense.id})}">edit</a></td>
+                <td>
+                    <a data-th-href="@{/expenses/edit/{id}(id=${expense.id})}">edit</a>
+                    <form data-th-action="@{/expenses/{id}(id=${expense.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button>Delete</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>
