@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Share</title>
+</head>
+<body>
+    <h1>PokeBook</h1>
+    
+    <table>
+        <thead>
+            <th>Expense</th>
+            <th>Vendor</th>
+            <th>Amount</th>
+        </thead>
+        <tbody>
+            <tr data-th-each="expense:${expenses}">
+                <td data-th-text="${expense.name}"></td>
+                <td data-th-text="${expense.vendor}"></td>
+                <td>$<span data-th-text="${#numbers.formatDecimal(expense.amount, 0, 'COMMA', 2, 'POINT')}"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Track an expense:</h2>
+    <form action="#" data-th-action="@{/expenses}" data-th-object="${expense}" method="post">
+        <label for="name">Expense Name:</label>
+        <input type="text" id="name" data-th-field="*{name}">
+        <span data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}">Expense name must be at least 5 characters long</span>
+
+        <label for="vendor">Vendor:</label>
+        <input type="text" id="vendor" data-th-field="*{vendor}">
+        <span data-th-if="${#fields.hasErrors('vendor')}" data-th-errors="*{vendor}">Vendor must be at least 5 characters long</span>
+        
+        <label for="amount">Amount:</label>
+        <input type="number" data-th-field="*{amount}" id="amount" step="0.01">
+        <span data-th-if="${#fields.hasErrors('amount')}" data-th-errors="*{amount}">Amount can't be free</span>
+        
+        <label for="description">Description:</label>
+        <textarea data-th-field="*{description}" id="description" cols="30" rows="10"></textarea>
+        <span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}">Description must be at least 5 characters long</span>
+
+        <button>Submit</button>
+    </form>
+</body>
+</html>
