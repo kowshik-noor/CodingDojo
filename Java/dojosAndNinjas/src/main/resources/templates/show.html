@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-th-include="layout :: page">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-fragment="header">Dojo Show</title>
+</head>
+<body>
+    <div data-th-fragment="content">
+        <h1 class="title is-2" data-th-text="${dojo.name}"></h1>
+        <h2 class="subtitle is-4">Ninjas</h2>
+        <table class="table is-fullwidth is-hoverable is-bordered is-striped">
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+            </thead>
+            <tbody>
+                <tr data-th-each="ninja:${dojo.ninjas}">
+                    <td data-th-text="${ninja.first_name}"></td>
+                    <td data-th-text="${ninja.last_name}"></td>
+                    <td data-th-text="${ninja.age}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="button is-link is-inverted" href="/dojos">Home</a>
+    </div>
+</body>
+</html>

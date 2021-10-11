@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-th-include="templates/layout :: page">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,31 +7,34 @@
     <title>Edit My Task</title>
 </head>
 <body>
-    <h1>Edit Expense</h1>
-    <a href="/expenses">Go Back</a>
+    <div data-th-fragment="content">
+        <h1>Edit Expense</h1>
+        <a href="/expenses">Go Back</a>
 
-    <form data-th-action="@{/expenses/{id}(id=${expense.id})}" method="post" data-th-object="${expense}">
-        <input type="hidden" name="_method" value="put">
-        <label for="name">Expense Name:</label>
-        <input type="text" id="name" data-th-field="*{name}" data-th-value="${expense.name}">
-        <span data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}">Expense name must be at least 5 characters
-            long</span>
-        
-        <label for="vendor">Vendor:</label>
-        <input type="text" id="vendor" data-th-field="*{vendor}" data-th-value="${expense.vendor}">
-        <span data-th-if="${#fields.hasErrors('vendor')}" data-th-errors="*{vendor}">Vendor must be at least 5 characters
-            long</span>
-        
-        <label for="amount">Amount:</label>
-        <input type="number" data-th-field="*{amount}" id="amount" step="0.01" data-th-value="${expense.amount}">
-        <span data-th-if="${#fields.hasErrors('amount')}" data-th-errors="*{amount}">Amount can't be free</span>
-        
-        <label for="description">Description:</label>
-        <textarea data-th-field="*{description}" id="description" cols="30" rows="10" data-th-value="${expense.description}"></textarea>
-        <span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}">Description must be at least 5
-            characters long</span>
-        
-        <button>Submit</button>
-    </form>
+        <form data-th-action="@{/expenses/{id}(id=${expense.id})}" method="post" data-th-object="${expense}">
+            <input type="hidden" name="_method" value="put">
+            <label for="name">Expense Name:</label>
+            <input type="text" id="name" data-th-field="*{name}" data-th-value="${expense.name}">
+            <span data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}">Expense name must be at least 5 characters
+                long</span>
+            
+            <label for="vendor">Vendor:</label>
+            <input type="text" id="vendor" data-th-field="*{vendor}" data-th-value="${expense.vendor}">
+            <span data-th-if="${#fields.hasErrors('vendor')}" data-th-errors="*{vendor}">Vendor must be at least 5 characters
+                long</span>
+            
+            <label for="amount">Amount:</label>
+            <input type="number" data-th-field="*{amount}" id="amount" step="0.01" data-th-value="${expense.amount}">
+            <span data-th-if="${#fields.hasErrors('amount')}" data-th-errors="*{amount}">Amount can't be free</span>
+            
+            <label for="description">Description:</label>
+            <textarea data-th-field="*{description}" id="description" cols="30" rows="10" data-th-value="${expense.description}"></textarea>
+            <span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}">Description must be at least 5
+                characters long</span>
+            
+            <button>Submit</button>
+        </form>
+    </div>
+    
 </body>
 </html>

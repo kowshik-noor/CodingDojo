@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-th-include="layout :: page">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-fragment="header">Dojos</title>
+</head>
+<body>
+    <div data-th-fragment="content">
+        <div class="columns">
+            <div class="column is-half">
+                <h2 class="title is-2">New Dojo</h2>
+                <form action="#" data-th-action="@{/dojos}" data-th-object="${dojo}" method="POST">
+                    <div class="field is-horizontal ">
+                        <label for="name" class="mr-3 label">Name</label>
+                        <div class="control field-body">
+                            <input type="text" class="input" id="name" placeholder="Name" data-th-field="*{name}">
+                            <span data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}"></span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="column is-half">
+                <h2 class="title is-2">All Dojos</h2>
+                <div class="card p-4">
+                    <div class="content is-medium">
+                        <p data-th-each="dojo:${dojos}"><a data-th-text="${dojo.name}" data-th-href="@{/dojos/{id}(id=${dojo.id})}"></a></p>
+                    </div>
+                </div>
+                <div class="section">
+                    <a href="/ninjas" class="button is-link is-inverted">Add Ninja</a>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-th-include="layout :: page">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-fragment="header">New Ninja</title>
+</head>
+<body>
+    <div class="container mt-3" data-th-fragment="content">
+        <div class="columns">
+            <div class="column is-three-quarters">
+                <h1 class="title is-1 mb-0">New Ninja</h1>
+                <form action="#" data-th-action="@{/ninjas}" data-th-object="${ninja}" method="POST">
+                    <div class="field">
+                        <label for="dojo" class="label">Dojo:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="dojo">
+                                    <option data-th-each="dojo:${dojos}" data-th-value="${dojo.id}" data-th-text="${dojo.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="field">
+                        <label class="label" for='first_name'>First Name:</label>
+                        <div class="control">
+                            <input data-th-field="*{first_name}" id="first_name" class="input" type="text" placeholder="First Name">
+                        </div>
+                        <span data-th-if="${#fields.hasErrors('first_name')}" data-th-errors="*{first_name}"></span>
+                    </div>
+    
+                    <div class="field">
+                        <label class="label" for='last_name'>Last Name:</label>
+                        <div class="control">
+                            <input data-th-field="*{last_name}" id="last_name" class="input" type="text" placeholder="Last Name">
+                        </div>
+                        <span data-th-if="${#fields.hasErrors('last_name')}" data-th-errors="*{last_name}"></span>
+                    </div>
+    
+                    <div class="field">
+                        <label for="age" class="label">Age:</label>
+                        <div class="control">
+                            <input data-th-field="*{age}" id="age" class="input" type="number" placeholder="Age">
+                        </div>
+                        <span data-th-if="${#fields.hasErrors('age')}" data-th-errors="*{age}"></span>
+                    </div>
+    
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-link">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    
+            <div class="column is-flex is-justify-content-end">
+                <a href="/dojos">Home</a>
+            </div>
+        </div>
+    
+    </div>
+</body>
+</html>
