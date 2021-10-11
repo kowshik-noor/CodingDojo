@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-th-include="layout :: page">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-fragment="header">Document</title>
+</head>
+<body>
+    <div data-th-fragment="content">
+        <div class="column is-one-third">
+            <div class="card p-5">
+                <h1 class="title is-2">Register</h1>
+                <form data-th-action="@{/register}" method="post" data-th-object="${newUser}">
+                    <div class="field">
+                        <label for="first_name" class="label">First Name:</label>
+                        <div class="control">
+                            <input id="first_name" data-th-field="*{first_name}" class="input" type="text" placeholder="e.g Alex">
+                        </div>
+                        <div class="notification is-danger is-light" data-th-if="${#fields.hasErrors('first_name')}">
+                            <div class="delete"></div>
+                            <span data-th-errors="*{first_name}"></span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="last_name" class="label">Last Name:</label>
+                        <div class="control">
+                            <input id="last_name" data-th-field="*{last_name}" class="input" type="text" placeholder="e.g smith">
+                        </div>
+                        <div class="notification is-danger is-light" data-th-if="${#fields.hasErrors('last_name')}">
+                            <div class="delete"></div>
+                            <span data-th-errors="*{last_name}"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="field">
+                        <label for="email" class="label">Email:</label>
+                        <div class="control">
+                            <input id="email" data-th-field="*{email}" class="input" type="email" placeholder="sixninestan@gmail.com">
+                        </div>
+                        <div class="notification is-danger is-light" data-th-if="${#fields.hasErrors('email')}">
+                            <div class="delete"></div>
+                            <span data-th-errors="*{email}"></span>
+                        </div>
+                    </div>
+
+        
+                    <div class="field">
+                        <label for="password" class="label">Password:</label>
+                        <div class="control">
+                            <input id="password" data-th-field="*{password}" class="input" type="password">
+                        </div>
+                        <div class="notification is-danger is-light" data-th-if="${#fields.hasErrors('password')}">
+                            <div class="delete"></div>
+                            <span data-th-errors="*{password}"></span>
+                        </div>
+                    </div>
+        
+                    <div class="field">
+                        <label for="confirm" class="label">Confirm Password:</label>
+                        <div class="control">
+                            <input id="confirm" data-th-field="*{confirm}" class="input" type="password">
+                        </div>
+                        <div class="notification is-danger is-light" data-th-if="${#fields.hasErrors('confirm')}">
+                            <div class="delete"></div>
+                            <span data-th-errors="*{confirm}"></span>
+                        </div>
+                    </div>
+        
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-info">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="column is-one-fifth"></div>
+        
+        <div class="column is-one-third">
+            <div class="card p-5">
+                <h1 class="title is-2">Login</h1>
+                <form data-th-action="@{/login}" method="post" data-th-object="${newLogin}">
+                    <div class="field">
+                        <label for="email" class="label">Email:</label>
+                        <div class="control">
+                            <input id="email" data-th-field="*{email}" class="input" type="email" placeholder="e.g alexsmith@gmail.com">
+                        </div>
+                        <div class="notification is-danger is-light" data-th-if="${#fields.hasErrors('email')}">
+                            <div class="delete"></div>
+                            <span data-th-errors="*{email}"></span>
+                        </div>
+                    </div>
+        
+                    <div class="field">
+                        <label for="login_password" class="label">Password:</label>
+                        <div class="control">
+                            <input id="login_password" data-th-field="*{password}" class="input" type="password">
+                        </div>
+                        <div class="notification is-danger is-light" data-th-if="${#fields.hasErrors('password')}">
+                            <div class="delete"></div>
+                            <span data-th-errors="*{password}"></span>
+                        </div>
+                    </div>
+        
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-success">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

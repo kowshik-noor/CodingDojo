@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" data-th-include="layout :: page">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-fragment="header">Dashboard</title>
+</head>
+<body>
+    <div data-th-fragment="content">
+        <h1 class="title is-centered is-1">Hello, <span data-th-text="${user.first_name}"></span>!!!!!!</h1>
+        <div class="control">
+            <a href="/logout" class="button is-primary">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
