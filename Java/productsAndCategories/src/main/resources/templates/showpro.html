@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-text="${product.name}"></title>
+</head>
+<body>
+    <h1 data-th-text="${product.name}"></h1>
+    <h2>Categories</h2>
+    <ul data-th-each="cat:${product.categories}">
+        <li data-th-text="${cat.name}"></li>
+    </ul>
+
+    <form data-th-action="@{/products/{id}/addcat(id=${product.id})}" method="post">
+        <input type="hidden" name="_method" value="put">
+        <label for="category">Add Category:</label>
+        <select name="category" id="category">
+            <option data-th-each="category:${categories}" data-th-value="${category.id}" data-th-text="${category.name}"></option>
+        </select>
+        <button>Add</button>
+    </form>
+</body>
+</html>
