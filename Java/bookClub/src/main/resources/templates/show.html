@@ -10,8 +10,8 @@
     <h1 data-th-text="${book.title}"></h1>
     <a href="/books">back to the shelves</a>
 
-    <p><span data-th-text="${book.user.name}"></span> read <span data-th-text="${book.title}"></span> by <span data-th-text="${book.author}"></span>.</p>
-    <p>Here are <span data-th-text="${book.user.name}"></span>'s thoughts:</p>
+    <p><span data-th-text="${book.owner.name}"></span> owns <span data-th-text="${book.title}"></span> by <span data-th-text="${book.author}"></span>.</p>
+    <p data-th-switch="${book.owner.id}">Here are <span data-th-case="${session.user_id}">your</span><span data-th-case="*"><span data-th-text="${book.owner.name}"></span>'s</span> thoughts:</p>
     <hr>
     <p data-th-text="${book.thoughts}"></p>
 </body>

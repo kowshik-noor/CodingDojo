@@ -7,24 +7,93 @@
     <title>Read Share</title>
 </head>
 <body>
-    <h1>Welcome, <span data-th-text="${user.name}"></span></h1>
+    <p data-th-text="${authorization}"></p>
+    <p>Hello, <span data-th-text="${user.name}"></span>. Welcome to..</p>
+    <h1>The Book Broker!</h1>
     <a href="/logout">Logout</a>
     <a href="/books/new">+ Add a book to my shelf!</a>
 
-    <p>Books from everyone's shelves:</p>
+    <p>My Books:</p>
     <table>
         <thead>
             <th>ID</th>
             <th>Title</th>
             <th>Author Name</th>
-            <th>Posted By</th>
+            <th>Owner</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr data-th-each="book:${user.booksOwned}">
+                <td data-th-text="${book.id}"></td>
+                <td><a data-th-href="@{/books/{id}(id=${book.id})}" data-th-text="${book.title}"></a></td>
+                <td data-th-text="${book.author}"></td>
+                <td data-th-text="${book.owner.name}"></td>
+                <td>
+                    <a data-th-href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
+                    <form data-th-action="@{/books/{id}(id=${book.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button>Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Available Books to Borrow:</p>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author Name</th>
+            <th>Owner</th>
+            <th>Actions</th>
         </thead>
         <tbody>
             <tr data-th-each="book:${books}">
                 <td data-th-text="${book.id}"></td>
                 <td><a data-th-href="@{/books/{id}(id=${book.id})}" data-th-text="${book.title}"></a></td>
                 <td data-th-text="${book.author}"></td>
-                <td data-th-text="${book.user.name}"></td>
+                <td data-th-text="${book.owner.name}"></td>
+                <td data-th-switch="${book.owner.id}">
+                    <span data-th-case="${user.id}">
+                        <a data-th-href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
+                        <form data-th-action="@{/books/{id}(id=${book.id})}" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button>Delete</button>
+                        </form>
+                    </span>
+                    <span data-th-case="*">
+                        <form data-th-action="@{/books/{id}/borrow(id=${book.id})}" method="post">
+                            <input type="hidden" name="_method" value="put">
+                            <button>Borrow</button>
+                        </form>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Books I'm Borrowing...</p>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author Name</th>
+            <th>Owner</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr data-th-each="book:${user.booksBorrowed}">
+                <td data-th-text="${book.id}"></td>
+                <td><a data-th-href="@{/books/{id}(id=${book.id})}" data-th-text="${book.title}"></a></td>
+                <td data-th-text="${book.author}"></td>
+                <td data-th-text="${book.owner.name}"></td>
+                <td>
+                    <form data-th-action="@{/books/{id}/return(id=${book.id})}" method="post">
+                        <input type="hidden" name="_method" value="put">
+                        <button>Return</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -40,22 +40,51 @@ public class Book {
 	private Date updatedAt;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
+    @JoinColumn(name="owner_id")
+    private User owner;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "borrower_id")
+    private User borrower;
     
     public Book() {}
     
     
 
-	public User getUser() {
-		return user;
+
+
+
+	public User getOwner() {
+		return owner;
 	}
 
 
 
-	public void setUser(User user) {
-		this.user = user;
+
+
+
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
+
+
+	
+	
+	public User getBorrower() {
+		return borrower;
+	}
+
+
+
+
+
+
+	public void setBorrower(User borrower) {
+		this.borrower = borrower;
+	}
+
+
+
 
 
 

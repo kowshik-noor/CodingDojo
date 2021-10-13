@@ -22,6 +22,10 @@ public class BookService {
 		return bookRepo.findAll();
 	}
 	
+	public List<Book> allAvailableBooks() {
+		return bookRepo.findByBorrower(null);
+	}
+	
 	public Book findBook(Long id) {
 		Optional<Book> book = bookRepo.findById(id);
 		if (book.isPresent()) {
@@ -29,5 +33,24 @@ public class BookService {
 		} else {
 			return null;
 		}
+	}
+	
+	public Book updateBook(Book b) {
+		Book book = this.findBook(b.getId());
+		
+		if(book == null) {
+			return book;
+		}
+		
+		book.setAuthor(b.getAuthor());
+		book.setThoughts(b.getThoughts());
+		book.setTitle(b.getTitle());
+		
+		bookRepo.save(book);
+		return book;
+	}
+	
+	public void deleteBook(Long id) {
+		bookRepo.deleteById(id);
 	}
 }

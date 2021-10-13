@@ -50,22 +50,52 @@ public class User {
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
     
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-    private List<Book> books;
+    @OneToMany(mappedBy="owner", fetch = FetchType.LAZY)
+    private List<Book> booksOwned;
+    
+    @OneToMany(mappedBy="borrower", fetch = FetchType.LAZY)
+    private List<Book> booksBorrowed;
     
     public User() {}
     
     
     
-	public List<Book> getBooks() {
-		return books;
+    
+
+
+	public List<Book> getBooksOwned() {
+		return booksOwned;
 	}
 
 
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
+
+
+
+	public void setBooksOwned(List<Book> booksOwned) {
+		this.booksOwned = booksOwned;
 	}
+
+
+
+
+
+
+	public List<Book> getBooksBorrowed() {
+		return booksBorrowed;
+	}
+
+
+
+
+
+
+	public void setBooksBorrowed(List<Book> booksBorrowed) {
+		this.booksBorrowed = booksBorrowed;
+	}
+
+
+
 
 
 

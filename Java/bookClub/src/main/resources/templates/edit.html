@@ -7,23 +7,30 @@
     <title>Book Share</title>
 </head>
 <body>
-    <h1>Add a Book to Your Shelf!</h1>
+    <h1>Change your entry</h1>
     <a href="/books">back to the shelves</a>
+    
+    <form data-th-action="@{/books/{id}(id=${book.id})}" method="post" data-th-object="${book}">
+        <input type="hidden" name="_method" value="put">
 
-    <form data-th-action="@{/books}" method="post" data-th-object="${book}">
         <label for="title">Title</label>
-        <input type="text" data-th-field="*{title}" id="title" data-th-value="${book.title}">
+        <input type="text" data-th-field="*{title}" id="title">
         <span data-th-if="${#fields.hasErrors('title')}" data-th-errors="*{title}"></span>
-
+    
         <label for="author">Author</label>
-        <input type="text" data-th-field="*{author}" id="author" data-th-value="${book.author}">
+        <input type="text" data-th-field="*{author}" id="author">
         <span data-th-if="${#fields.hasErrors('author')}" data-th-errors="*{author}"></span>
-
+    
         <label for="thoughts">My Thoughts</label>
-        <textarea data-th-field="*{thoughts}" id="thoughts" cols="30" rows="10"><span data-th-value="${book.thoughts}"></span></textarea>
+        <textarea data-th-field="*{thoughts}" id="thoughts" cols="30" rows="10"></textarea>
         <span data-th-if="${#fields.hasErrors('thoughts')}" data-th-errors="*{thoughts}"></span>
-
+    
         <button>Submit</button>
+    </form>
+
+    <form data-th-action="@{/books/{id}(id=${book.id})}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>Delete</button>
     </form>
 </body>
 </html>
