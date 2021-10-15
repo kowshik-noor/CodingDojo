@@ -1,4 +1,4 @@
-package com.codingdojo.bookclub.models;
+package com.codingdojo.projectmanager.models;
 
 import java.util.Date;
 import java.util.List;
@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -29,7 +32,11 @@ public class User {
     
     @NotEmpty(message="Name is required!")
     @Size(min=3, message="Name must be at least 3 characters")
-    private String name;
+    private String firstName;
+    
+    @NotEmpty(message="Name is required!")
+    @Size(min=3, message="Name must be at least 3 characters")
+    private String lastName;
     
     @NotEmpty(message="Email is required!")
     @Email(message="Please enter a valid email!")
@@ -50,56 +57,30 @@ public class User {
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
     
-    @OneToMany(mappedBy="owner", fetch = FetchType.LAZY)
-    private List<Book> booksOwned;
+    @OneToMany(mappedBy="projectLead", fetch = FetchType.LAZY)
+    private List<Project> projectsLed;
     
-    @OneToMany(mappedBy="borrower", fetch = FetchType.LAZY)
-    private List<Book> booksBorrowed;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "teamwork", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    private List<Project> projectsJoined;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "tasks", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    private List<Task> tasks;
     
     public User() {}
     
     
     
-    
-
-
-	public List<Book> getBooksOwned() {
-		return booksOwned;
-	}
-
-
-
-
-
-
-	public void setBooksOwned(List<Book> booksOwned) {
-		this.booksOwned = booksOwned;
-	}
-
-
-
-
-
-
-	public List<Book> getBooksBorrowed() {
-		return booksBorrowed;
-	}
-
-
-
-
-
-
-	public void setBooksBorrowed(List<Book> booksBorrowed) {
-		this.booksBorrowed = booksBorrowed;
-	}
-
-
-
-
-
-
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 
@@ -111,14 +92,26 @@ public class User {
 
 
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 
@@ -182,7 +175,44 @@ public class User {
 	}
 
 
-    @PrePersist
+
+	public List<Project> getProjectsLed() {
+		return projectsLed;
+	}
+
+
+
+	public void setProjectsLed(List<Project> projectsLed) {
+		this.projectsLed = projectsLed;
+	}
+
+
+
+	public List<Project> getProjectsJoined() {
+		return projectsJoined;
+	}
+
+
+
+	public void setProjectsJoined(List<Project> projectsJoined) {
+		this.projectsJoined = projectsJoined;
+	}
+
+
+
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+
+
+	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
 		this.updatedAt = new Date();

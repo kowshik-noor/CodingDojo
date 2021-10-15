@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+</head>
+<body>
+    <h1>Project Details</h1>
+    <a href="/dashboard">Back to dashboard</a>
+
+    <p>Project: <span data-th-text="${project.title}"></span></p>
+    <p>Description: <span data-th-text="${project.description}"></span></p>
+    <p>Due Date: <span data-th-text="${#dates.format(project.due, 'M/d/yyyy')}"></span></p>
+
+    <a data-th-href="@{/projects/{id}/tasks(id=${project.id})}">See tasks!</a>
+    <div data-th-if="${project.projectLead.id == session.user_id}">
+        <form data-th-action="@{/projects/{id}(id=${project.id})}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button>Delete Project</button>
+        </form>
+    </div>
+</body>
+</html>

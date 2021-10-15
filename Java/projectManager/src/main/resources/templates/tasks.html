@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props Page</title>
+</head>
+<body>
+    <h1>Project: <span data-th-text="${project.title}"></span></h1>
+    <p>Project Lead: <span data-th-text="${project.projectLead.firstName}"></span></p>
+    <a href="/dashboard">Back to dashboard</a>
+
+    <form data-th-action="@{/projects/{id}/tasks(id=${project.id})}" method="post" data-th-object="${task}">
+        <p>Add a task ticket for this team:</p>
+        <textarea data-th-field="*{content}" cols="30" rows="10"></textarea>
+        <button>Submit</button>
+    </form>
+
+    <div data-th-each="task:${tasks}">
+        <p><strong>Added by <span data-th-text="${task.user.firstName}"></span> at <span data-th-text="${#dates.format(task.createdAt, 'h:mma MMM d')}"></span>:</strong></p>
+        <p data-th-text="${task.content}"></p>
+    </div>
+</body>
+</html>

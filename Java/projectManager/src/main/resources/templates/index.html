@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager</title>
+</head>
+
+<body>
+    <h1>Project Manager</h1>
+    <p>A place for teams to manage projects.</p>
+
+    <h2>Register</h2>
+    <form data-th-action="@{/register}" method="post" data-th-object="${newUser}">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" data-th-field="*{firstName}">
+        <span data-th-if="${#fields.hasErrors('firstName')}" data-th-errors="*{firstName}"></span>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" data-th-field="*{lastName}">
+        <span data-th-if="${#fields.hasErrors('lastName')}" data-th-errors="*{lastName}"></span>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" data-th-field="*{email}">
+        <span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></span>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" data-th-field="*{password}">
+        <span data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}"></span>
+
+        <label for="confirm">Confirm PW:</label>
+        <input type="password" id="confirm" data-th-field="*{confirm}">
+        <span data-th-if="${#fields.hasErrors('confirm')}" data-th-errors="*{confirm}"></span>
+
+        <button>Submit</button>
+    </form>
+
+    <h2>Login</h2>
+    <form data-th-action="@{/login}" method="post" data-th-object="${newLogin}">
+        <label for="email">Email:</label>
+        <input type="email" data-th-field="*{email}" id="email">
+        <span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></span>
+
+        <label for="email">Password:</label>
+        <input type="password" data-th-field="*{password}" id="password">
+        <span data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}"></span>
+
+        <button>Submit</button>
+    </form>
+</body>
+
+</html>

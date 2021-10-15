@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Project</title>
+</head>
+<body>
+    <h1>Create a Project</h1>
+    <form data-th-action="@{/projects}" method="post" data-th-object="${project}">
+        <p>Project Title:</p>
+        <input type="text" data-th-field="*{title}">
+        <span data-th-if="${#fields.hasErrors('title')}" data-th-errors="*{title}"></span>
+
+        <p>Project Description:</p>
+        <textarea data-th-field="*{description}" cols="30" rows="10"></textarea>
+        <span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}"></span>
+
+        <p>Due Date:</p>
+        <input type="date" data-th-field="*{due}">
+        <span data-th-if="${#fields.hasErrors('due')}" data-th-errors="*{due}"></span>
+
+        <a href="/dashboard">Cancel</a>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

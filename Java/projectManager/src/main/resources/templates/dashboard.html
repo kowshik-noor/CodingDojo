@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, <span data-th-text="${user.firstName}"></span>!</h1>
+    <a href="/logout">log out</a>
+    <a href="/projects/new">+ new project</a>
+    <h2>All Projects</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Team Lead</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-th-each="project:${projects}">
+                <td><a data-th-href="@{/projects/{id}(id=${project.id})}" data-th-text="${project.title}"></a></td>
+                <td data-th-text="${project.projectLead.firstName}"></td>
+                <td data-th-text="${#dates.format(project.due, 'MMM d')}"></td>
+                <td>
+                    <form data-th-action="@{/projects/{id}/join(id=${project.id})}" method="post">
+                        <input type="hidden" name="_method" value="put">
+                        <button>Join Team</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Your Projects</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Lead</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-th-each="project:${user.projectsLed}">
+                <td><a data-th-href="@{/projects/{id}(id=${project.id})}" data-th-text="${project.title}"></a></td>
+                <td data-th-text="${project.projectLead.firstName}"></td>
+                <td data-th-text="${#dates.format(project.due, 'MMM d')}"></td>
+                <td>
+                    <a data-th-href="@{/projects/{id}/edit(id=${project.id})}">edit</a>
+                </td>
+            </tr>
+            <tr data-th-each="project:${user.projectsJoined}">
+                <td><a data-th-href="@{/projects/{id}(id=${project.id})}" data-th-text="${project.title}"></a></td>
+                <td data-th-text="${project.projectLead.firstName}"></td>
+                <td data-th-text="${#dates.format(project.due, 'MMM d')}"></td>
+                <td>
+                    <form data-th-action="@{/projects/{id}/leave(id=${project.id})}" method="post">
+                        <input type="hidden" name="_method" value="put">
+                        <button>Leave team</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
