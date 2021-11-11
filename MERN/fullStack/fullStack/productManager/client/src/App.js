@@ -7,6 +7,7 @@ import {
 
 import Main from './views/Main';
 import Detail from './views/Detail';
+import Update from './views/Update';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route exact path="/:id">
           <Detail></Detail>
+        </Route>
+        <Route exact path="/:id/edit">
+          <Update></Update>
         </Route>
       </Switch>
     </BrowserRouter>
