@@ -5,5 +5,17 @@ module.exports = {
         Product.create(req.body)
             .then(product => res.json(product))
             .catch(err => res.json({message: 'Something went wrong', error: err}))
+    },
+
+    getProducts: (req, res) => {
+        Product.find()
+            .then(products => res.json(products))
+            .catch(err => res.json({message: 'Something went wrong', error: err}))
+    },
+
+    getProduct: (req, res) => {
+        Product.findById(req.params.id)
+            .then(product => res.json(product))
+            .catch(err => res.json({message: 'Something went wrong', error: err}))
     }
 }
