@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 
-const ProductForm = () => {
+const ProductForm = (props) => {
+    const {initialFormInfo, onSubmitProp} = props
     const [formInfo, setFormInfo] = useState({
-        title: "",
-        price: 0,
-        description: ""
+        title: initialFormInfo.title,
+        price: initialFormInfo.price,
+        description: initialFormInfo.description
     })
 
     const changeHandler = e => {
@@ -17,21 +17,24 @@ const ProductForm = () => {
 
     const submitHandler = e => {
         e.preventDefault()
-        axios.post('http://localhost:8000/api/products', formInfo)
-            .then(res=>console.log(res))
-            .catch(err=>console.log(err))
+        onSubmitProp(formInfo)
+        setFormInfo({
+            title: "",
+            price: 0,
+            description: ""
+        })
     }
 
     return (
         <form onSubmit={submitHandler}>
             <label>Title</label>
-            <input type="text" name="title" onChange={ changeHandler }/>
+            <input type="text" name="title" onChange={changeHandler} value={formInfo.title}/>
             
             <label>Price</label>
-            <input type="number" name="price" onChange={changeHandler} />
+            <input type="number" name="price" onChange={changeHandler} value={formInfo.price} />
             
             <label>Description</label>
-            <textarea name="description" cols="30" rows="10" onChange={changeHandler}></textarea>
+            <textarea name="description" cols="30" rows="10" onChange={changeHandler} value={formInfo.description}></textarea>
 
             <button>Create</button>
         </form>

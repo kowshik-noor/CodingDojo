@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import {useParams, Link} from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
+import DeleteButton from '../components/DeleteButton'
 
 const Detail = (props) => {
+    const history = useHistory()
     const [product, setProduct] = useState({})
     const { id } = useParams()
     
@@ -17,7 +19,8 @@ const Detail = (props) => {
             <h1>{product.title}</h1>
             <p>${ product.price }</p>
             <p>{product.description}</p>
-            <Link to={ `/${product._id}/edit` }>Edit</Link>
+            <Link to={`/${product._id}/edit`}>Edit</Link>
+            <DeleteButton productId={product._id} success={() => history.push("/")}></DeleteButton>
         </div>
     )
 }

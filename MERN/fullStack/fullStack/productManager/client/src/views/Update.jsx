@@ -1,50 +1,40 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import {useParams} from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+import ProductForm from '../components/ProductForm'
+import DeleteButton from '../components/DeleteButton'
 
 const Update = (props) => {
+    const history = useHistory()
     const {id} = useParams()
-    const [formData, setFormData] = useState({
-        title: "",
-        price: 0,
-        description: ""
-    })
+    const [product, setProduct] = useState()
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/products/' + id)
-            .then(res => setFormData(res.data))
+            .then(res => {
+                setProduct(res.data)
+                setLoaded(true)
+            })
             .catch(err => console.error(err))
     }, [id])
 
-    const updateProduct = e => {
-        e.preventDefault()
-        axios.put('http://localhost:8000/api/products/' + id, formData)
+    const updateProduct = product => {
+        axios.put('http://localhost:8000/api/products/' + id, product)
             .then(res => console.log(res))
             .catch(err => console.error(err))
-    }
-
-    const changeHandler = e => {
-        setFormData({
-            ...formData,
-            [e.target.name] : e.target.value
-        })
     }
 
     return (
         <div>
             <h1>Update a Product</h1>
-            <form onSubmit={updateProduct}>
-                <label>Title</label>
-                <input type="text" value={formData.title} onChange={changeHandler} name="title" />
-                
-                <label>Price</label>
-                <input type="number" name="price" value={formData.price} onChange={ changeHandler}/>
-
-                <label>Description</label>
-                <textarea name="description" onChange={changeHandler} cols="30" rows="10" value={formData.description}></textarea>
-                
-                <button>Update Product</button>
-            </form>
+            {loaded && (
+                <ProductForm
+                    onSubmitProp={updateProduct}
+                    initialFormInfo={product}
+                ></ProductForm>
+            )}
+            <DeleteButton productId={id} success={() => history.push("/")}></DeleteButton>
         </div>
     )
 }
