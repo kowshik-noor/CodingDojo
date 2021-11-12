@@ -26,7 +26,7 @@ module.exports = {
     },
 
     deleteProduct: (req, res) => {
-        Product.findByIdAndDelete(req.param.id)
+        Product.findByIdAndDelete(req.params.id)
             .then(result => res.json(result))
             .catch(err => res.json({message: 'Something went wrong', error: err}))
     }
