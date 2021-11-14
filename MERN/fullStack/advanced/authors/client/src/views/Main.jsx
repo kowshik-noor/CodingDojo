@@ -8,7 +8,15 @@ const Main = () => {
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/authors')
-            .then(res => setAuthors(res.data))
+            .then(res => {
+                const data = res.data
+                const sortArray = (x, y) => {
+                    if (x.name < y.name) return -1
+                    if (x.name > y.name) return 1
+                    return 0
+                }
+                setAuthors(data.sort(sortArray))
+            })
             .catch(err => console.error(err))
     }, [])
 
