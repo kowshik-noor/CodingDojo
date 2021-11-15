@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import DeleteButton from './DeleteButton'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css';
@@ -6,8 +6,6 @@ import 'reactjs-popup/dist/index.css';
 
 const List = (props) => {
     const { players, removeFromDom } = props
-    const [open, setOpen] = useState(false)
-    const close = () => setOpen(false)
 
     return (
         <table>
