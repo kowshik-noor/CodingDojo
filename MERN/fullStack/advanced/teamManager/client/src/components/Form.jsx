@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 const Form = (props) => {
-    const {submitProp, formErr} = props
+    const {submitProp} = props
 
     const [formInfo, setFormInfo] = useState({
         name: "",
@@ -26,7 +26,12 @@ const Form = (props) => {
         <form onSubmit={submit}>
             <label>Player Name: </label>
             <input type="text" name="name" onChange={change} />
-            <p>{ formErr?.name?.message}</p>
+            <p>{
+                (formInfo.name.length < 2 && formInfo.name.length > 0) ?
+                "Name must be at least 2 characters long" :
+                    ""
+            }
+            </p>
 
             <label>Preferred Position (optional): </label>
             <input type="text" name="position" onChange={change}/>

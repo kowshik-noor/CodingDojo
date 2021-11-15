@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 const DeleteButton = (props) => {
-    const { playerId, success } = props
+    const { playerId, success, children } = props
     
     const deletePlayer = e => {
         axios.delete('http://localhost:8000/api/players/' + playerId)
@@ -12,7 +12,7 @@ const DeleteButton = (props) => {
 
     return (
         <button onClick={deletePlayer}>
-            Delete
+            {children}
         </button>
     )
 }

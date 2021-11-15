@@ -7,20 +7,17 @@ import axios from 'axios'
 const Players = () => {
     const history = useHistory()
     const { url, path } = useRouteMatch()
-    const [formErr, setFormErr] = useState()
     const [players, setPlayers] = useState([])
     
     const createPlayer = player => {
         axios.post('http://localhost:8000/api/players', player)
             .then(res => {
                 console.log(res.data)
-                setFormErr()
                 setPlayers([...players, res.data])
                 history.push(`${url}/list`)
             })
             .catch(err => {
                 console.log(err.response.data.errors)
-                setFormErr(err.response.data.errors)
             })
     }
 
@@ -44,7 +41,7 @@ const Players = () => {
                     <List players={players} removeFromDom={removeFromDom}></List>
                 </Route>
                 <Route exact path={`${path}/addplayer`}>
-                    <Form submitProp={createPlayer} formErr={formErr}></Form>
+                    <Form submitProp={createPlayer} ></Form>
                 </Route>
             </Switch>
         </>
